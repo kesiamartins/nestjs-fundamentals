@@ -17,25 +17,25 @@ export class UserController {
     }
 
     @Get(':id')
-    async listOne(@Param() params) {
-        return {user:{}, params}
+    async listOne(@Param('id', ParseIntPipe) id: number) {
+        return {user:{}, id}
     }
 
     @Put(':id')
-    async update(@Body() {name, email, password}: UpdatePutUserDTO, @Param() params) {
+    async update(@Body() {name, email, password}: UpdatePutUserDTO, @Param('id', ParseIntPipe) id: number) {
         return {
             method: 'put',
             name, email, password,
-            params
+            id
         }
     }
 
     @Patch(':id')
-    async updatePartial(@Body() {name, email, password}: UpdatePatchUserDTO, @Param() params) {
+    async updatePartial(@Body() {name, email, password}: UpdatePatchUserDTO, @Param('id', ParseIntPipe) id: number) {
         return {
             method: 'patch',
             name, email, password,
-            params
+            id
         }
     }
 
